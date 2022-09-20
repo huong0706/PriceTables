@@ -12,6 +12,7 @@ const projectNodes = document.querySelectorAll('.info__project-node');
 const projectLists = document.querySelectorAll('.info__project-list');
 
 let indexCurrent = 0;
+let nodeCurrent = 0;
 
 function start() {
     MobileNavbar();
@@ -39,11 +40,6 @@ function ScrollSliders() {
     }
 
     nodeLists.forEach( (node, index ) => {
-        for (var i = 0  ; i < nodeActives.length; i++) {
-            if (nodeActives[i].className == 'slider__scroll-icon--active active') {
-                nodeCurrent = i;
-            }
-        }
         node.addEventListener('click', function() {
             const slider = sliders[index];
             const nodeActive = nodeActives[index]
@@ -94,6 +90,13 @@ function ScrollSliders() {
 
     });
 
+    for (var i = 0  ; i < projectNodes.length; i++) {
+        if (projectNodes[i].className == 'info__project-node node--current') {
+            nodeCurrent = i;
+            projectLists[nodeCurrent].classList.add('project--current');
+        }
+    }
+
     projectNodes.forEach((node, index ) => {
         node.addEventListener('click', () => {
             var projectList = projectLists[index];
@@ -103,8 +106,14 @@ function ScrollSliders() {
             if ('.info__project-node.node--current') {
                 document.querySelector('.info__project-node.node--current').classList.remove('node--current');
             }
+            if (index > nodeCurrent) {
+                projectList.style.animation = 'tonext .4s ease-in';
+            }else {
+                projectList.style.animation = 'toback .4s ease-in';
+            }
             projectList.classList.add('project--current');
             node.classList.add('node--current');
+            nodeCurrent = index;
         });
     });
     

@@ -681,6 +681,13 @@
 .info__feed-item {
 
 }
+.info__feed-item:hover,
+.info__project-item:hover,
+.info__path-item:hover,
+.subinfo__option-item:hover {
+    filter: brightness(1.3);
+    cursor: pointer;
+}
 .info__feed-img {
 
 }
