@@ -19,12 +19,19 @@
         flex-direction: column-reverse;
         gap: 16px;
     }
-    
+    .slider__top {
+        gap: 0;
+    }
+    .slider__nav {
+        transform: scale(0.5);
+    }
 }
+
 /* Tablet */
 @media (min-width: 769px) and (max-width: 1023px) {
 
 }
+
 /* Mobile */
 @media (max-width:768px) {
     .menu__mobile {

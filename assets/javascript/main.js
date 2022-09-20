@@ -11,7 +11,7 @@ const backSlider =  document.querySelector('.slider__nav--back');
 const projectNodes = document.querySelectorAll('.info__project-node');
 const projectLists = document.querySelectorAll('.info__project-list');
 
-let indexCurrent = 0
+let indexCurrent = 0;
 
 function start() {
     MobileNavbar();
@@ -31,23 +31,36 @@ function MobileNavbar() {
 
 // Scroll Sliders
 function ScrollSliders() {
-    for (var i = 1  ; i < nodeLists.length; i++) {
+    for (var i = 0  ; i < nodeActives.length; i++) {
         if (nodeActives[i].className == 'slider__scroll-icon--active active') {
             indexCurrent = i;
+            sliders[indexCurrent].classList.add('active');
         }
     }
+
     nodeLists.forEach( (node, index ) => {
+        for (var i = 0  ; i < nodeActives.length; i++) {
+            if (nodeActives[i].className == 'slider__scroll-icon--active active') {
+                nodeCurrent = i;
+            }
+        }
         node.addEventListener('click', function() {
-            slider = sliders[index];
-            nodeActive = nodeActives[index]
+            const slider = sliders[index];
+            const nodeActive = nodeActives[index]
             if ('.slider__item.active') {
                  document.querySelector('.slider__item.active').classList.remove('active');
             }
             if ('.slider__scroll-icon--active.active') {
                  document.querySelector('.slider__scroll-icon--active.active').classList.remove('active');
             }
+            if (index > indexCurrent) {
+                slider.style.animation = 'tonext 1s linear';
+            }else {
+                slider.style.animation = 'toback 1s linear';
+            }
             slider.classList.add('active');
             nodeActive.classList.add('active');
+            indexCurrent = index;
         });
     });
 
