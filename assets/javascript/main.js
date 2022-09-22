@@ -1,120 +1,107 @@
-const mobileNavbar =  document.querySelector('.mobile-navbar');
-const openNavbar =  document.querySelector('.menu__mobile i');
-const closeNavbar =  document.querySelector('.mobile-navbar__right');
+const mobileNavbar = document.querySelector(
+    ".mobile-navbar"
+);
+const openNavbar = document.querySelector(
+    ".menu__mobile i"
+);
+const closeNavbar = document.querySelector(
+    ".mobile-navbar__right"
+);
+const nodeActives = document.querySelectorAll(
+    ".slider__scroll-icon--active"
+);
+const nodeBtns = document.querySelectorAll(
+    ".slider__scroll-node"
+);
+const slider = document.querySelector(".slider__list");
+const nextBtn = document.querySelector(
+    ".slider__nav--next"
+);
+const prevBtn = document.querySelector(
+    ".slider__nav--prev"
+);
+const project = document.querySelector(
+    ".info__project-list"
+);
+const projectNodes = document.querySelectorAll(
+    ".info__project-node"
+);
 
-const nodeLists =  document.querySelectorAll('.slider__scroll-node');
-const nodeActives =  document.querySelectorAll('.slider__scroll-icon--active');
-const sliders =  document.querySelectorAll('.slider__item');
-const nextSlider =  document.querySelector('.slider__nav--next');
-const backSlider =  document.querySelector('.slider__nav--back');
-
-const projectNodes = document.querySelectorAll('.info__project-node');
-const projectLists = document.querySelectorAll('.info__project-list');
-
-let indexCurrent = 0;
-let nodeCurrent = 0;
+var root = document.querySelector(":root");
+var currentIndex = 0;
 
 function start() {
     MobileNavbar();
     ScrollSliders();
 }
-start()
+start();
 
 // Open, close navbar-mobile
 function MobileNavbar() {
-    openNavbar.addEventListener('click', function(){
-        mobileNavbar.classList.remove('hidden');
+    openNavbar.addEventListener("click", function () {
+        mobileNavbar.classList.add("open");
+        mobileNavbar.classList.remove("close");
     });
-    closeNavbar.addEventListener('click', function() {
-        mobileNavbar.classList.add('hidden');   
+    closeNavbar.addEventListener("click", function () {
+        mobileNavbar.classList.add("close");
+        mobileNavbar.classList.remove("open");
     });
 }
-
 // Scroll Sliders
 function ScrollSliders() {
-    for (var i = 0  ; i < nodeActives.length; i++) {
-        if (nodeActives[i].className == 'slider__scroll-icon--active active') {
-            indexCurrent = i;
-            sliders[indexCurrent].classList.add('active');
-        }
-    }
-
-    nodeLists.forEach( (node, index ) => {
-        node.addEventListener('click', function() {
-            const slider = sliders[index];
-            const nodeActive = nodeActives[index]
-            if ('.slider__item.active') {
-                 document.querySelector('.slider__item.active').classList.remove('active');
+    nextBtn.addEventListener("click", function () {
+        currentIndex =
+            currentIndex < 3 ? currentIndex + 1 : 3;
+        root.style.setProperty(
+            "--currentIndex",
+            currentIndex
+        );
+        slider.classList.add("slider");
+        nodeActives.forEach((e) => {
+            if (e.classList.contains("active")) {
+                e.classList.remove("active");
             }
-            if ('.slider__scroll-icon--active.active') {
-                 document.querySelector('.slider__scroll-icon--active.active').classList.remove('active');
+        });
+        nodeActives[currentIndex].classList.add("active");
+    });
+    prevBtn.addEventListener("click", function () {
+        currentIndex =
+            currentIndex > 0 ? currentIndex - 1 : 0;
+        root.style.setProperty(
+            "--currentIndex",
+            currentIndex
+        );
+        slider.classList.add("slider");
+        nodeActives.forEach((e) => {
+            if (e.classList.contains("active")) {
+                e.classList.remove("active");
             }
-            if (index > indexCurrent) {
-                slider.style.animation = 'tonext 1s linear';
-            }else {
-                slider.style.animation = 'toback 1s linear';
-            }
-            slider.classList.add('active');
-            nodeActive.classList.add('active');
-            indexCurrent = index;
+        });
+        nodeActives[currentIndex].classList.add("active");
+    });
+    nodeBtns.forEach((node, index) => {
+        node.addEventListener("click", function () {
+            var nodeActive = nodeActives[index];
+            root.style.setProperty("--currentIndex", index);
+            slider.classList.add("slider");
+            nodeActives.forEach((e) => {
+                if (e.classList.contains("active")) {
+                    e.classList.remove("active");
+                }
+            });
+            nodeActive.classList.add("active");
         });
     });
-
-    
-    nextSlider.addEventListener('click',() => {
-        if ('.slider__item.active') {
-            document.querySelector('.slider__item.active').classList.remove('active');
-
-       }
-       if ('.slider__scroll-icon--active.active') {
-            document.querySelector('.slider__scroll-icon--active.active').classList.remove('active');
-       }
-       indexCurrent = (indexCurrent + 1) % sliders.length;
-       nodeActives[indexCurrent].classList.add('active');
-       sliders[indexCurrent].classList.add('active');
-       sliders[indexCurrent].style.animation = 'tonext 1s linear';
-
-    });
-
-    backSlider.addEventListener('click',(e) => {
-        if ('.slider__item.active') {
-            document.querySelector('.slider__item.active').classList.remove('active');
-       }
-       if ('.slider__scroll-icon--active.active') {
-            document.querySelector('.slider__scroll-icon--active.active').classList.remove('active');
-       }
-        indexCurrent = (indexCurrent - 1 + sliders.length) % sliders.length;
-        nodeActives[indexCurrent].classList.add('active');
-        sliders[indexCurrent].classList.add('active');
-        sliders[indexCurrent].style.animation = 'toback 1s linear';
-
-    });
-
-    for (var i = 0  ; i < projectNodes.length; i++) {
-        if (projectNodes[i].className == 'info__project-node node--current') {
-            nodeCurrent = i;
-            projectLists[nodeCurrent].classList.add('project--current');
-        }
-    }
-
-    projectNodes.forEach((node, index ) => {
-        node.addEventListener('click', () => {
-            var projectList = projectLists[index];
-            if ('.info__project-list.project--current') {
-                document.querySelector('.info__project-list.project--current').classList.remove('project--current');
-            }
-            if ('.info__project-node.node--current') {
-                document.querySelector('.info__project-node.node--current').classList.remove('node--current');
-            }
-            if (index > nodeCurrent) {
-                projectList.style.animation = 'tonext .4s ease-in';
-            }else {
-                projectList.style.animation = 'toback .4s ease-in';
-            }
-            projectList.classList.add('project--current');
-            node.classList.add('node--current');
-            nodeCurrent = index;
+    projectNodes.forEach((node, index) => {
+        node.addEventListener("click", () => {
+            root.style.setProperty("--currentIndex", index);
+            project.classList.add("project");
+            projectNodes.forEach((e) => {
+                if (e.classList.contains("node--current")) {
+                    e.classList.remove("node--current");
+                }
+            });
+            node.classList.add("node--current");
         });
     });
-    
 }
