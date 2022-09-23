@@ -44,12 +44,11 @@
     background-color: var(--background-color);
     z-index: 2;
     transform: translate(-100%);
-    transition: transform 0.3s;
+    transition: 0.3s;
 }
 
 .mobile-navbar__content {
     padding: 15px 30px 0;
-    transition: scroll 10s linear;
 }
 
 .mobile-navbar__header {
@@ -84,7 +83,6 @@
 
 .mobile-navbar__item:hover .mobile-navbar__link {
     color: var(--white-color);
-    transition: 0.3s;
 }
 
 .mobile-navbar__link {
@@ -92,6 +90,7 @@
     text-transform: uppercase;
     font-weight: 500;
     font-size: 1.6rem;
+    transition: 0.3s;
 }
 
 .menu__navbar-list {
@@ -104,7 +103,6 @@
 .menu__navbar-item:hover .menu__navbar-link {
     color: var(--primary-color);
     border-color: var(--primary-color);
-    transition: 0.4s linear;
 }
 
 .menu__navbar-link {
@@ -114,6 +112,7 @@
     font-weight: bold;
     border: 2px solid transparent;
     padding: 8px 20px;
+    transition: 0.3s;
 }
 
 .menu__sub-navbar {
@@ -165,12 +164,12 @@
     background-color: var(--background-color);
     padding: 25px 24px 25px 26px;
     z-index: 1;
+    transition: 0.3s;
 }
 
 .slider__nav:hover {
     background-color: var(--primary-color);
     cursor: pointer;
-    transition: 0.3s;
 }
 
 .slider__nav-icon {
@@ -186,7 +185,7 @@
     display: flex;
     height: 100%;
     width: 400%;
-    transition: all 0.3s;
+    transition: 0.3s;
 }
 
 .slider__item {
@@ -233,16 +232,11 @@
     font-size: 2rem;
     font-weight: 500;
     color: var(--white-color);
+    transition: 0.3s;
 }
 
-.slider__button-content:hover {
+.slider__button-link:hover {
     border-color: var(--button-color);
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.slider__button-content:hover .slider__button-link {
-    transition: 0.3s;
     color: var(--button-color);
 }
 
@@ -306,8 +300,9 @@
 .table__item {
     position: relative;
     background-color: #f0f3f2;
-    width: 297px;
+    min-width: 297px;
     border: 1px solid rgba(223, 229, 232, 1);
+     transition: 0.3s;
 }
 
 .table__link {
@@ -327,17 +322,15 @@
     background-color: var(--white-color);
     padding: 19px 0px;
     margin: -19px 0px;
-    transition: all 0.3s;
+   
 }
 
 .table__item:hover .table__title {
     color: var(--text-dark-color);
-    /* transition: .3s; */
 }
 
 .table__item:hover .table__price {
     left: -1px;
-    transition: all 0.3s;
     width: calc(100% + 2px);
 }
 
@@ -378,6 +371,7 @@
     position: relative;
     left: -1px;
     width: calc(100% + 2px);
+    transition: 0.3s;
 }
 
 .table__price-num {
@@ -517,23 +511,21 @@
 }
 
 .prevent__button {
-    margin: 90px auto 0;
+    margin-top: 90px;
+    justify-content: center;
+    display: flex;
 }
 
 .prevent__button-link {
     font-size: 2rem;
     color: var(--white-color);
     font-weight: 500;
+    transition: .3s;
 }
 
-.prevent__button:hover {
-    border-color: var(--button-color);
-    transition: 0.3s;
-}
-
-.prevent__button:hover .prevent__button-link {
+.prevent__button-link:hover {
     color: var(--button-color);
-    transition: 0.3s;
+    border-color: var(--button-color);
 }
 
 /* Footer */
@@ -691,7 +683,6 @@
 
 .info__email-sending:hover .info__email-link {
     color: var(--white-color);
-    transition: 0.3s;
 }
 
 .info__email-link {
@@ -701,6 +692,7 @@
     font-weight: bold;
     background-color: #394050;
     padding: 10px 70px;
+    transition: 0.3s;
 }
 
 .info__feed {
@@ -723,7 +715,6 @@
 .subinfo__option-item:hover {
     filter: brightness(1.3);
     cursor: pointer;
-    transition: 0.3s;
 }
 
 .info__feed-img {
@@ -805,7 +796,7 @@
     display: flex;
     gap: 4px;
     width: 300%;
-    transition: all 0.3s;
+    transition: 0.3s;
 }
 
 .info__project-item {
@@ -855,11 +846,11 @@
     border: 1px solid var(--input-color);
     border-top-right-radius: 3px;
     border-bottom-right-radius: 3px;
+    transition: 0.3s;
 }
 
 .info__letter-btn:hover {
     color: var(--white-color);
-    transition: 0.3s;
 }
 
 .info__letter-note {
