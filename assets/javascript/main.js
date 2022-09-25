@@ -1,38 +1,25 @@
-const mobileNavbar = document.querySelector(
-    ".mobile-navbar"
-);
-const openNavbar = document.querySelector(
-    ".menu__mobile i"
-);
-const closeNavbar = document.querySelector(
-    ".mobile-navbar__right"
-);
-const nodeActives = document.querySelectorAll(
-    ".slider__scroll-icon--active"
-);
-const nodeBtns = document.querySelectorAll(
-    ".slider__scroll-node"
-);
+const mobileNavbar = document.querySelector(".mobile-navbar");
+const openNavbar = document.querySelector(".menu__mobile i");
+const closeNavbar = document.querySelector(".mobile-navbar__right");
+const nodeActives = document.querySelectorAll(".slider__scroll-icon--active");
+const nodeBtns = document.querySelectorAll(".slider__scroll-node");
 const slider = document.querySelector(".slider__list");
-const nextBtn = document.querySelector(
-    ".slider__nav--next"
-);
-const prevBtn = document.querySelector(
-    ".slider__nav--prev"
-);
-const project = document.querySelector(
-    ".info__project-list"
-);
-const projectNodes = document.querySelectorAll(
-    ".info__project-node"
-);
-
+const items = document.querySelectorAll(".slider__item");
+const nextBtn = document.querySelector(".slider__nav--next");
+const prevBtn = document.querySelector(".slider__nav--prev");
+const project = document.querySelector(".info__project-list");
+const projectNodes = document.querySelectorAll(".info__project-node");
+const interval = 5000;
 var root = document.querySelector(":root");
 var currentIndex = 0;
+var timer = 0;
 
 function start() {
     MobileNavbar();
-    ScrollSliders();
+    nextBtn.addEventListener("click", next);
+    prevBtn.addEventListener("click", prev);
+    node();
+    autoSlider();
 }
 start();
 
@@ -47,49 +34,51 @@ function MobileNavbar() {
         mobileNavbar.classList.remove("open");
     });
 }
-// Scroll Sliders
-function ScrollSliders() {
-    nextBtn.addEventListener("click", function () {
-        currentIndex =
-            currentIndex < 3 ? currentIndex + 1 : 3;
-        root.style.setProperty(
-            "--currentIndex",
-            currentIndex
-        );
-        slider.classList.add("slider");
-        nodeActives.forEach((e) => {
-            if (e.classList.contains("active")) {
-                e.classList.remove("active");
-            }
-        });
-        nodeActives[currentIndex].classList.add("active");
+function autoSlider() {
+    timer = setInterval(next, interval);
+}
+function next() {
+    currentIndex = currentIndex < items.length - 1 ? currentIndex + 1 : items.length - 1;
+    root.style.setProperty("--currentIndex", currentIndex);
+    slider.classList.add("slider");
+    nodeActives.forEach((e) => {
+        if (e.classList.contains("active")) {
+            e.classList.remove("active");
+        }
     });
-    prevBtn.addEventListener("click", function () {
-        currentIndex =
-            currentIndex > 0 ? currentIndex - 1 : 0;
-        root.style.setProperty(
-            "--currentIndex",
-            currentIndex
-        );
-        slider.classList.add("slider");
-        nodeActives.forEach((e) => {
-            if (e.classList.contains("active")) {
-                e.classList.remove("active");
-            }
-        });
-        nodeActives[currentIndex].classList.add("active");
+    nodeActives[currentIndex].classList.add("active");
+    clearInterval(timer);
+    timer = setInterval(next, interval);
+}
+
+function prev() {
+    currentIndex = currentIndex > 0 ? currentIndex - 1 : 0;
+    root.style.setProperty("--currentIndex", currentIndex);
+    slider.classList.add("slider");
+    nodeActives.forEach((e) => {
+        if (e.classList.contains("active")) {
+            e.classList.remove("active");
+        }
     });
+    nodeActives[currentIndex].classList.add("active");
+    clearInterval(timer);
+    timer = setInterval(next, interval);
+}
+function node() {
     nodeBtns.forEach((node, index) => {
         node.addEventListener("click", function () {
             var nodeActive = nodeActives[index];
+            currentIndex = index;
             root.style.setProperty("--currentIndex", index);
             slider.classList.add("slider");
             nodeActives.forEach((e) => {
                 if (e.classList.contains("active")) {
                     e.classList.remove("active");
                 }
+                nodeActive.classList.add("active");
             });
-            nodeActive.classList.add("active");
+            clearInterval(timer);
+            timer = setInterval(next, interval);
         });
     });
     projectNodes.forEach((node, index) => {
