@@ -24,6 +24,7 @@ html {
 	--red-color: #f50057;
 	--black-color: #393d50;
 	--currentIndex: 0;
+	--currentNode: 0;
 }
 
 li {
@@ -75,7 +76,7 @@ img {
 }
 
 .project {
-	transform: translate(calc(-33% * var(--currentIndex)));
+	transform: translate(calc(-33% * var(--currentNode)));
 }
 
 .open {

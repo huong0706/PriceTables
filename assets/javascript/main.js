@@ -12,6 +12,7 @@ const projectNodes = document.querySelectorAll(".info__project-node");
 const interval = 5000;
 var root = document.querySelector(":root");
 var currentIndex = 0;
+var currentNode = 0;
 var timer = 0;
 
 function start() {
@@ -65,11 +66,11 @@ function prev() {
     timer = setInterval(next, interval);
 }
 function node() {
-    nodeBtns.forEach((node, index) => {
-        node.addEventListener("click", function () {
+    nodeBtns.forEach((btn, index) => {
+        btn.addEventListener("click", function () {
             var nodeActive = nodeActives[index];
             currentIndex = index;
-            root.style.setProperty("--currentIndex", index);
+            root.style.setProperty("--currentIndex", currentIndex);
             slider.classList.add("slider");
             nodeActives.forEach((e) => {
                 if (e.classList.contains("active")) {
@@ -83,7 +84,8 @@ function node() {
     });
     projectNodes.forEach((node, index) => {
         node.addEventListener("click", () => {
-            root.style.setProperty("--currentIndex", index);
+            root.style.setProperty("--currentNode", index);
+            console.log(index, currentIndex);
             project.classList.add("project");
             projectNodes.forEach((e) => {
                 if (e.classList.contains("node--current")) {
