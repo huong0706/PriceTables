@@ -85,7 +85,6 @@ function node() {
     projectNodes.forEach((node, index) => {
         node.addEventListener("click", () => {
             root.style.setProperty("--currentNode", index);
-            console.log(index, currentIndex);
             project.classList.add("project");
             projectNodes.forEach((e) => {
                 if (e.classList.contains("node--current")) {
