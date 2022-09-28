@@ -23,8 +23,11 @@ html {
 	--blur-color: #99a9b5;
 	--red-color: #f50057;
 	--black-color: #393d50;
+	--border-width: 1px;
+	--less-width: -1px;
 	--currentIndex: 0;
 	--currentNode: 0;
+	--lengthItem: 0;
 }
 
 li {
@@ -72,7 +75,7 @@ img {
 }
 
 .slider {
-	transform: translate(calc(-25% * var(--currentIndex)));
+	transform: translate(calc(-100% / var(--lengthItem) * var(--currentIndex)));
 }
 
 .project {

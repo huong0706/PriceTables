@@ -4,7 +4,7 @@ const closeNavbar = document.querySelector(".mobile-navbar__right");
 const nodeActives = document.querySelectorAll(".slider__scroll-icon--active");
 const nodeBtns = document.querySelectorAll(".slider__scroll-node");
 const slider = document.querySelector(".slider__list");
-const items = document.querySelectorAll(".slider__item");
+const sliders = document.querySelectorAll(".slider__item");
 const nextBtn = document.querySelector(".slider__nav--next");
 const prevBtn = document.querySelector(".slider__nav--prev");
 const project = document.querySelector(".info__project-list");
@@ -17,10 +17,7 @@ var timer = 0;
 
 function start() {
     MobileNavbar();
-    nextBtn.addEventListener("click", next);
-    prevBtn.addEventListener("click", prev);
-    node();
-    autoSlider();
+    scrollSlider();
 }
 start();
 
@@ -35,11 +32,18 @@ function MobileNavbar() {
         mobileNavbar.classList.remove("open");
     });
 }
+function scrollSlider() { 
+    root.style.setProperty("--lengthItem", sliders.length);
+    nextBtn.addEventListener("click", next);
+    prevBtn.addEventListener("click", prev);
+    node();
+    autoSlider();
+}
 function autoSlider() {
     timer = setInterval(next, interval);
 }
 function next() {
-    currentIndex = currentIndex < items.length - 1 ? currentIndex + 1 : items.length - 1;
+    currentIndex = currentIndex < sliders.length - 1 ? currentIndex + 1 : sliders.length - 1;
     root.style.setProperty("--currentIndex", currentIndex);
     slider.classList.add("slider");
     nodeActives.forEach((e) => {
