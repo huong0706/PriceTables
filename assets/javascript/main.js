@@ -1,18 +1,13 @@
 const mobileNavbar = document.querySelector(".mobile-navbar");
 const openNavbar = document.querySelector(".menu__mobile i");
 const closeNavbar = document.querySelector(".mobile-navbar__right");
-const nodeActives = document.querySelectorAll(".slider__scroll-icon--active");
-const nodeBtns = document.querySelectorAll(".slider__scroll-node");
-const slider = document.querySelector(".slider__list");
-const sliders = document.querySelectorAll(".slider__item");
-const nextBtn = document.querySelector(".slider__nav--next");
-const prevBtn = document.querySelector(".slider__nav--prev");
+
 const project = document.querySelector(".info__project-list");
 const projectNodes = document.querySelectorAll(".info__project-node");
-
+const contains = document.querySelectorAll(".slider__container");
 function start() {
     MobileNavbar();
-    Sliders();
+    contains.forEach(e => Sliders(e));
     Projects();
 }
 start();
@@ -29,9 +24,15 @@ function MobileNavbar() {
     });
 }
 // Slider
-function Sliders() {
+function Sliders(e) {
+    const nodeActives = e.querySelectorAll(".slider__scroll-icon--active");
+    const nodeBtns = e.querySelectorAll(".slider__scroll-node");
+    const slider = e.querySelector(".slider__list");
+    const sliders = e.querySelectorAll(".slider__item");
+    const nextBtn = e.querySelector(".slider__nav--next");
+    const prevBtn = e.querySelector(".slider__nav--prev");
     slider.classList.add("slider");
-    let root = document.querySelector(".slider");
+    let root = e.querySelector(".slider");
     root.style.setProperty("--lengthItem", sliders.length);
     let currentIndex = 0;
     let timer = 0;
