@@ -26,8 +26,8 @@ html {
 	--border-width: 1px;
 	--less-width: -1px;
 	--currentIndex: 0;
-	--currentNode: 0;
 	--lengthItem: 0;
+	
 }
 
 li {
@@ -78,9 +78,6 @@ img {
 	transform: translate(calc(-100% / var(--lengthItem) * var(--currentIndex)));
 }
 
-.project {
-	transform: translate(calc(-33% * var(--currentNode)));
-}
 
 .open {
 	transform: translate(0%);
