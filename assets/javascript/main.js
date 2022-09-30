@@ -71,8 +71,9 @@ function Sliders(e) {
     function node() {
         nodeBtns.forEach((btn, index) => {
             btn.addEventListener("click", function () {
-                var nodeActive = nodeActives[index];
-                root.style.setProperty("--currentIndex", index);
+                currentIndex = index;
+                var nodeActive = nodeActives[currentIndex];
+                root.style.setProperty("--currentIndex", currentIndex);
                 nodeActives.forEach((e) => {
                     if (e.classList.contains("active")) {
                         e.classList.remove("active");
