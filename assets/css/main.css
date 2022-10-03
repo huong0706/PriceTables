@@ -136,14 +136,13 @@
 .menu__cart-number {
     position: absolute;
     top: 0;
-    left: calc(50% - 2px);
+    left: calc(50% - var(--less-border));
     color: var(--white-color);
     font-size: 1.4rem;
 }
 
 /* Slider */
 .header__slider {
-    
 }
 
 .slider__container {
@@ -197,7 +196,7 @@
     margin-bottom: 112px;
 }
 
-.slider__logo img {
+.slider__logo-img {
     margin: 0 auto;
 }
 
@@ -213,7 +212,7 @@
     margin-bottom: 66px;
 }
 
-.slider__body-title span {
+.slider__body-title--span {
     font-weight: bold;
 }
 
@@ -281,7 +280,7 @@
     font-weight: 100;
 }
 
-.table__heading-title span {
+.table__heading-title--span {
     font-weight: bold;
     color: var(--text-dark-color);
 }
@@ -303,7 +302,7 @@
     background-color: #f0f3f2;
     min-width: 297px;
     border: var(--border-width) solid rgba(223, 229, 232, 1);
-     transition: 0.3s;
+    transition: 0.3s;
 }
 
 .table__link {
@@ -323,7 +322,6 @@
     background-color: var(--white-color);
     padding: 19px 0px;
     margin: -19px 0px;
-   
 }
 
 .table__item:hover .table__title {
@@ -443,8 +441,7 @@
     left: 20px;
     border-style: solid;
     border-width: 5px 8px;
-    border-color: transparent transparent transparent
-        var(--white-color);
+    border-color: transparent transparent transparent var(--white-color);
 }
 
 .table__order-text {
@@ -521,7 +518,7 @@
     font-size: 2rem;
     color: var(--white-color);
     font-weight: 500;
-    transition: .3s;
+    transition: 0.3s;
 }
 
 .prevent__button-link:hover {
@@ -547,7 +544,6 @@
     display: grid;
     justify-content: center;
     grid-gap: 70px 30px;
-    /* grid-template-columns: fit-content(262px) fit-content(262px) fit-content(262px) fit-content(262px); */
     grid-template-columns: repeat(auto-fill, 262px);
 }
 
@@ -563,8 +559,7 @@
     display: inline-block;
     border-width: 5px;
     border-style: solid;
-    border-color: transparent transparent var(--red-color)
-        var(--red-color);
+    border-color: transparent transparent var(--red-color) var(--red-color);
     margin-left: 5px;
 }
 
