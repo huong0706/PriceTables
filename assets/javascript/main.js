@@ -20,7 +20,7 @@ function MobileNavbar() {
     const closeNavbar = document.querySelector(".mobile-navbar__right");
    
     function handleNavbar(isOpen) {
-        if (isOpen === true) {
+        if (isOpen) {
             mobileNavbar.classList.add("open");
             mobileNavbar.classList.remove("close");
         } else {
@@ -32,31 +32,31 @@ function MobileNavbar() {
     closeNavbar.addEventListener("click", () => handleNavbar(false));
 }
 // Slider
-function handleSlider(e) {
-    const sliders = e.querySelectorAll(".slider__item");
-    const slider = e.querySelector(".slider__list");
-    const nextBtn = e.querySelector(".slider__nav--next");
-    const prevBtn = e.querySelector(".slider__nav--prev");
-    const nodeBtns = e.querySelectorAll(".slider__scroll-node");
-    const nodeActives = e.querySelectorAll(".slider__scroll-icon--active");
+function handleSlider(sliderContainer) {
+    const sliders = sliderContainer.querySelectorAll(".slider__item");
+    const slider = sliderContainer.querySelector(".slider__list");
+    const nextBtn = sliderContainer.querySelector(".slider__nav--next");
+    const prevBtn = sliderContainer.querySelector(".slider__nav--prev");
+    const nodeBtns = sliderContainer.querySelectorAll(".slider__scroll-node");
+    const nodeActives = sliderContainer.querySelectorAll(".slider__scroll-icon--active");
     slider.classList.add("slider");
-    const root = e.querySelector(".slider");
+    const rootSlider = sliderContainer.querySelector(".slider");
     const interval = 5000;
     let currentIndex = 0;
     let timer = 0;
-    root.style.setProperty("--lengthItem", sliders.length);
+    rootSlider.style.setProperty("--lengthItem", sliders.length);
 
     function autoSlider() {
         timer = setInterval(() => moveSlider(true), interval);
     }
     function moveSlider(isNext) {
-        if (isNext === true) {
+        if (isNext) {
             currentIndex =
                 currentIndex < sliders.length - 1 ? currentIndex + 1 : sliders.length - 1;
         } else {
             currentIndex = currentIndex > 0 ? currentIndex - 1 : 0;
         }
-        root.style.setProperty("--currentIndex", currentIndex);
+        rootSlider.style.setProperty("--currentIndex", currentIndex);
         handleClass(nodeActives, currentIndex, "active");
         clearInterval(timer);
         timer = setInterval(() => moveSlider(true), interval);
@@ -65,7 +65,7 @@ function handleSlider(e) {
         nodeBtns.forEach((btn, index) => {
             btn.addEventListener("click", function () {
                 currentIndex = index;
-                root.style.setProperty("--currentIndex", currentIndex);
+                rootSlider.style.setProperty("--currentIndex", currentIndex);
                 handleClass(nodeActives, currentIndex, "active");
                 clearInterval(timer);
                 timer = setInterval(() => moveSlider(true), interval);
@@ -79,7 +79,7 @@ function handleSlider(e) {
 }
 function Sliders() {
     const sliderContainers = document.querySelectorAll(".slider__container");
-    sliderContainers.forEach((slider) => handleSlider(slider));
+    sliderContainers.forEach((sliderContainer) => handleSlider(sliderContainer));
 }
 function Projects() {
     const project = document.querySelector(".info__project-list");
@@ -90,9 +90,9 @@ function Projects() {
         node.addEventListener("click", () => {
             project.classList.add("slider");
             currentIndex = index;
-            let root = document.querySelector(".info__project-list.slider");
-            root.style.setProperty("--lengthItem", projectNodes.length);
-            root.style.setProperty("--currentIndex", index);
+            const rootProject = document.querySelector(".info__project-list.slider");
+            rootProject.style.setProperty("--lengthItem", projectNodes.length);
+            rootProject.style.setProperty("--currentIndex", index);
             handleClass(projectNodes, currentIndex, "node--current");
         });
     });
