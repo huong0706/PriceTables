@@ -18,7 +18,7 @@ function MobileNavbar() {
     const mobileNavbar = document.querySelector(".mobile-navbar");
     const openNavbar = document.querySelector(".menu__mobile i");
     const closeNavbar = document.querySelector(".mobile-navbar__right");
-   
+
     function handleNavbar(isOpen) {
         if (isOpen) {
             mobileNavbar.classList.add("open");
@@ -72,6 +72,15 @@ function handleSlider(sliderContainer) {
             });
         });
     }
+    function checkKeys(keys) {
+        if (keys.key == "ArrowLeft") {
+            moveSlider(false);
+        } else if (keys.key == "ArrowRight") {
+            moveSlider(true);
+        }
+        keys.preventDefault();
+    }
+    addEventListener("keydown", checkKeys);
     nextBtn.addEventListener("click", () => moveSlider(true));
     prevBtn.addEventListener("click", () => moveSlider(false));
     nodeSlider();
@@ -85,7 +94,7 @@ function Projects() {
     const project = document.querySelector(".info__project-list");
     const projectNodes = document.querySelectorAll(".info__project-node");
     let currentIndex = 0;
-    
+
     projectNodes.forEach((node, index) => {
         node.addEventListener("click", () => {
             project.classList.add("slider");
