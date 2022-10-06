@@ -73,9 +73,9 @@ function handleSlider(sliderContainer) {
         });
     }
     function checkKeys(keys) {
-        if (keys.key == "ArrowLeft") {
+        if (keys.key === "ArrowLeft") {
             moveSlider(false);
-        } else if (keys.key == "ArrowRight") {
+        } else if (keys.key === "ArrowRight") {
             moveSlider(true);
         }
         keys.preventDefault();
