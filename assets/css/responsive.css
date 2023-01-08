@@ -1,0 +1,67 @@
+/* Tablet & Mobile */
+@media (max-width: 1024px) {
+    .menu__navbar {
+        display: none;
+    }
+    .slider__container {
+        margin-top: 50px;
+    }
+    .slider__logo,
+    .slider__body-title {
+        margin-bottom: 50px;
+    }
+    .slider__body-title,
+    .prevent__title {
+        font-size: 5rem;
+    }
+
+    .slider__body-text,
+    .prevent__text {
+        font-size: 2rem;
+    }
+
+    .table__body {
+        flex-wrap: wrap;
+        gap: 50px;
+    }
+    .subinfo__content {
+        flex-direction: column-reverse;
+        gap: 16px;
+    }
+
+    .slider__top {
+        gap: 0;
+    }
+
+    .slider__nav {
+        transform: scale(0.5);
+        transition: 0.3s;
+    }
+}
+
+/* Tablet */
+@media (min-width: 769px) and (max-width: 1023px) {
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .menu__mobile {
+        display: block;
+    }
+
+    .menu__sub-navbar {
+        display: none;
+    }
+
+    .slider__button {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #menu__mobile--checkbox:checked ~ .mobile-navbar {
+        display: block;
+    }
+    .slider__nav {
+        padding: 10px;
+    }
+}
